@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    maven
     kotlin("jvm") version "1.4.21"
     kotlin("plugin.serialization") version "1.4.10"
 }
@@ -28,3 +29,17 @@ tasks.test {
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+
+
+tasks.install {
+    repositories.withGroovyBuilder {
+        "mavenInstaller" {
+            "pom" {
+                setProperty("version", "1.0")
+                setProperty("artifactId", "com.vmichalak.prsmashfranceclient")
+            }
+        }
+    }
+}
+
